@@ -1,0 +1,64 @@
+﻿Version=5.2
+NumberOfModules=0
+Build1=Default,b4a.example
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.basic4ppc.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="14"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "@string/app_name")~\n~SetApplicationAttribute(android:theme, "@android:style/Theme.Holo")~\n~~\n~AddApplicationText(~\n~<meta-data android:name="presage_key" android:value="264572"/>~\n~<meta-data android:name="presage_env" android:value="staging"/>~\n~<service android:name="io.presage.services.PresageServiceImp"/>~\n~<activity~\n~  android:name="io.presage.activities.PresageActivity"~\n~  android:label="@string/app_name" android:theme="@style/Presage.Theme.Transparent"~\n~  android:configChanges="keyboard|keyboardHidden|orientation|screenSize"~\n~  android:hardwareAccelerated="true">~\n~  <intent-filter>~\n~    <action android:name="io.presage.intent.action.LAUNCH_WEBVIEW" />~\n~    <category android:name="android.intent.category.DEFAULT" />~\n~  </intent-filter>~\n~</activity>~\n~<receiver android:name="io.presage.receivers.BootReceiver">~\n~    <intent-filter>~\n~        <action android:name="android.intent.action.BOOT_COMPLETED"/>~\n~        <action android:name="android.intent.action.DATE_CHANGED"/>~\n~        <action android:name="io.presage.receivers.BootReceiver.RESTART_SERVICE"/>~\n~    </intent-filter>~\n~</receiver>~\n~)~\n~~\n~'End of default text.
+IconFile=
+NumberOfFiles=1
+File1=Layout1.bal
+NumberOfLibraries=2
+Library1=core
+Library2=presage
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: B4A Example
+	#VersionCode: 1
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+	#AdditionalRes: C:\Users\bob\Documents\PresageResources\res
+
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: True
+#End Region
+
+Sub Process_Globals
+	'These global variables will be declared once when the application starts.
+	'These variables can be accessed from all modules.
+
+End Sub
+
+Sub Globals
+	'These global variables will be redeclared each time the activity is created.
+	'These variables can only be accessed from this module.
+	Dim presageAds As Presage 
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+    Log("Hello world!")
+    Msgbox("Hello world?", "First program")
+	presageAds.Initialize
+End Sub
+
+Sub Activity_Resume
+	presageAds.adToServe("interstitial","presageAdsListener")
+End Sub
+Sub presageAdsListener_onAdFound
+	Log("Presage Ad Found")
+End Sub
+Sub presageAdsListener_onAdNotFound
+	Log("Presage Ad  Not Found")
+End Sub
+Sub presageAdsListener_onAdClosed
+	Log("Presage Ad Closed")
+End Sub
+
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+
+
