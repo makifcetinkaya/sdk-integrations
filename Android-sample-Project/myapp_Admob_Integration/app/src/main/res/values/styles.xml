@@ -19,6 +19,6 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:backgroundDimEnabled">false</item>
     </style>
-    <string name="a">AdToServe</string>
+    <string name="a">Call an Ad</string>
 
 </resources>
