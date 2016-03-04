@@ -1,10 +1,13 @@
 package com.example.myapp;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,7 +17,6 @@ import android.widget.Toast;
 
 import io.presage.Presage;
 
-import com.example.myapp.PresageCustomEvent;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
@@ -22,12 +24,15 @@ import com.jirbo.adcolony.AdColony;
 import com.jirbo.adcolony.AdColonyBundleBuilder;
 import com.vungle.publisher.VunglePub;
 
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity {
 
     private InterstitialAd mCustomEventInterstitial;
     // Ad Colony set up
-    private static final String ZONE_ID = "your_ad_colony_zone";
-    private static final String APP_ID = "your_ad_colony_app_id";
+    private static final String ZONE_ID = "Ad Colony Zone ID";
+    private static final String APP_ID = "Ad Colony App ID";
+    public static Context contextOfApplication;
 
     // Vungle Instance
     final VunglePub vunglePub = VunglePub.getInstance();
@@ -35,13 +40,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        contextOfApplication = getApplicationContext();
+
+        SharedPreferences pref = contextOfApplication.getSharedPreferences("lastAd", 0); // 0 - for private mode
+        final long AdDisplayed= pref.getLong("lastAd", 0L);
+        Date today = new Date();
+        final long AdToDisplay = today.getTime();
+
+        Log.i("PresageCount", "The count is " + (AdToDisplay - AdDisplayed));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             WebView.setWebContentsDebuggingEnabled(true);
         }
 
         mCustomEventInterstitial = new InterstitialAd(this);
-        mCustomEventInterstitial.setAdUnitId("your_admob_ad_unit");
+        mCustomEventInterstitial.setAdUnitId("admob ad unit");
 
         // Ad Colony
         AdColonyBundleBuilder.setZoneId(ZONE_ID);
@@ -55,7 +68,9 @@ public class MainActivity extends AppCompatActivity {
             }
             @Override
             public void onAdClosed(){
+                resetAdTime();
                 requestNewInterstitial();
+
             }
         });
 
@@ -67,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         AdColony.configure(this, "test", APP_ID,ZONE_ID);
 
         // Vungle configuration and initialization
-        final String app_id = "your_vungle_app_id";
+        final String app_id = "Vungle App ID";
         vunglePub.init(this, app_id);
 
         setContentView(R.layout.activity_main);
@@ -94,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void requestNewInterstitial() {
         AdRequest adRequest = new AdRequest.Builder().build();
-
         mCustomEventInterstitial.loadAd(adRequest);
     }
 
@@ -115,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -131,5 +146,16 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         AdColony.resume(this);
         vunglePub.onResume();
+    }
+    public static Context getContextOfApplication(){
+        return contextOfApplication;
+    }
+    public static void resetAdTime(){
+        Context applicationContext = MainActivity.getContextOfApplication();
+        SharedPreferences pref = applicationContext.getSharedPreferences("lastAd", 0);
+        SharedPreferences.Editor editor = pref.edit();
+        Date currentDate=new Date();
+        editor.putLong("lastAd", currentDate.getTime());
+        editor.commit();
     }
 }
