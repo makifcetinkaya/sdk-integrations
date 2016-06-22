@@ -18,7 +18,7 @@ public class AuthForm : MonoBehaviour {
 		WPresage.Initialize();
 		// Creation of our WHAndlerImpl to Handle Events
 		WHandlerImpl handlerImpl = new WHandlerImpl();
-		
+		WEulaImpl handlerEulaImpl = new WEulaImpl();
 		// Making AdToServe call to try to shox an Ad if available
 		WPresage.AdToServe("interstitial", handlerImpl);
 		#endif
@@ -39,10 +39,34 @@ public class AuthForm : MonoBehaviour {
 		
 		public void OnAdFound() {
 			Debug.Log ("onAdFound");
+			WPresage.ShowInterstitial(this);
 		}
 		
 		public void OnAdClosed() {
 			Debug.Log ("onAdClosed");
+		}
+
+		public void OnAdError(int code) {
+			Debug.Log ("onAdError : " + code);
+		}
+
+		public void OnAdDisplayed() {
+			Debug.Log ("onAdDisplayed");
+		}
+	}
+
+	public class WEulaImpl : WPresage.IEulaHandler {
+
+		public void OnEulaFound() {
+			Debug.Log ("OnEulaFound");
+		}
+
+		public void OnEulaNotFound() {
+			Debug.Log ("OnEulaNotFound");
+		}
+
+		public void OnEulaClosed() {
+			Debug.Log ("OnEulaClosed");
 		}
 	}
 
