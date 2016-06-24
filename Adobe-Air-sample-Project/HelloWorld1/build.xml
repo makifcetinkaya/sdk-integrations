@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Require min Ant 1.9.1
+ -->
+<project name="ane-ogury-presage" default="main" basedir="."
+    xmlns:if="ant:if"
+    xmlns:unless="ant:unless" >
+
+    <target name="clean">
+
+        <property environment="env"/>
+
+        <delete dir="${basedir}/bin-release" />
+        <delete dir="${basedir}/docs" />
+
+        <mkdir dir="${basedir}/bin-release" />
+        <mkdir dir="${basedir}/docs" />
+
+    </target>
+
+
+    <target name="define">
+
+        <property name="FLEX_HOME" value="/sdk/flex/4_6_AIR_20_0"/>
+        <property name="local.flashplayerversion" value="20"/>
+        <property name="local.swfversion" value="31"/>
+
+        
+        <property name="build.swf" value="true"/>
+        <property name="build.apk" value="true"/>
+        <property name="APPNAME" value="demoG"/>
+        <property name="APKNAME" value="demoG"/>
+        
+
+        <taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar" />
+
+    </target>
+
+
+    <target name="before" depends="define">
+
+        <sequential if:true="${build.showoptions}">
+
+            <echo message="      Flex SDK = ${FLEX_HOME}"/>
+            <echo message=" Flash version = ${local.flashplayerversion}"/>
+            <echo message="   SWF version = ${local.swfversion}"/>
+            
+        </sequential>
+
+    </target>
+
+    <target name="main" depends="clean,before,compile,after">
+    </target>
+
+    <target name="compile">
+
+    	<antcall target="compile-swf" if:true="${build.swf}"/>
+
+        <antcall target="compile-apk" if:true="${build.apk}"/>
+
+    </target>
+
+    <target name="compile-swf">
+
+        <mxmlc
+            file="${basedir}/src/${APPNAME}.as"
+            output="${basedir}/bin-release/${APPNAME}.swf"
+            target-player="${local.flashplayerversion}"
+            swf-version="${local.swfversion}"
+        >
+            <load-config filename="${FLEX_HOME}/frameworks/airmobile-config.xml" />
+            <strict>true</strict>
+            <optimize>true</optimize>
+            <warnings>true</warnings>
+            <verbose-stacktraces>false</verbose-stacktraces>
+            
+            <external-library-path dir="${basedir}/lib-swc" append="true">
+               <include name="presage.swc" />
+            </external-library-path>
+
+            <source-path path-element="${basedir}/src" />
+            
+        </mxmlc>
+
+    </target>
+
+
+    <target name="compile-apk">
+
+        <exec executable="${FLEX_HOME}/bin/adt" failonerror="true" dir="${basedir}/bin-release">
+            <arg value="-certificate"/>
+            <arg line="-cn SelfSign"/>
+            <arg line="-ou Corsaair"/>
+            <arg line="-o 'Corsaair'"/>
+            <arg line="-c FR"/>
+            <arg line="-validityPeriod 2"/>
+            <arg value="2048-RSA"/>
+            <arg value="codesign.p12"/>
+            <arg value="helloworld"/>
+        </exec>
+
+        <exec executable="${FLEX_HOME}/bin/adt" failonerror="true" dir="${basedir}/bin-release">
+            <env key="AIR_NOANDROIDFLAIR" value="true"/>
+            <arg value="-package"/>
+            <arg line="-target apk-captive-runtime"/>
+            <arg line="-storetype pkcs12 -keystore codesign.p12 -storepass helloworld"/>
+            <arg value="${APKNAME}.apk"/>
+            <arg value="${basedir}/${APPNAME}-app.xml"/>
+            <arg line="-extdir ${basedir}/libs"/>
+            <arg value="${APPNAME}.swf"/>
+        </exec>
+
+        <!-- $ ant -Dpublish=true -->
+        <sequential if:true="${publish}">
+
+            <exec executable="${FLEX_HOME}/bin/adt" failonerror="true" dir="${basedir}/bin-release">
+                <arg value="-installApp"/>
+                <arg line="-platform android"/>
+                <arg line="-device 066295cf005cafff"/>
+                <arg line="-package ${APKNAME}.apk"/>
+            </exec>
+
+        </sequential>
+
+    </target>
+
+    <target name="after">
+    </target>
+    
+</project>
