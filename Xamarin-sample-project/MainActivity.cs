@@ -6,7 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-
+using IO.Presage.Utils;
 using IO.Presage;
 
 namespace example
@@ -41,28 +41,29 @@ namespace example
 
 		void LaunchWithEULAButtonClick(object sender, EventArgs ea)
 		{
-			var eulaEvents = Presage.Instance.LaunchWithEULA();
+			EulaHandlerEvents events = new EulaHandlerEvents(Presage.Instance);
 
-			eulaEvents.EulaFound += (s, e) =>
+			events.EulaFound += (s, e) =>
 			{
 				System.Diagnostics.Debug.WriteLine("EulaFound");
 			};
 
-			eulaEvents.EulaNotFound += (s, e) =>
+			events.EulaNotFound += (s, e) =>
 			{
 				System.Diagnostics.Debug.WriteLine("EulaNotFound");
 			};
 
-			eulaEvents.EulaClosed += (s, e) =>
+			events.EulaClosed += (s, e) =>
 			{
 				System.Diagnostics.Debug.WriteLine("EulaClosed");
 			};
+			Presage.Instance.LaunchWithEULA(events);
+
 		}
 
 		void ShowInterstitialClick(object sender, EventArgs ea)
 		{
-
-			var loadEvents = Presage.Instance.LoadInterstitial();
+			ADHandlerEvents loadEvents = new ADHandlerEvents(Presage.Instance);
 
 			loadEvents.AdClosed += (s, e) =>
 			{
@@ -90,14 +91,13 @@ namespace example
 				System.Diagnostics.Debug.WriteLine("Ad found");
 				ShowInterstitial();
 			};
-
+			Presage.Instance.LoadInterstitial(loadEvents);
 
 		}
 
-		void ShowInterstitial()
+		void ShowInterstitial() 
 		{
-			var showEvents = Presage.Instance.ShowInterstitial();
-
+			ADHandlerEvents showEvents = new ADHandlerEvents(Presage.Instance);
 			showEvents.AdClosed += (st, et) =>
 			{
 				System.Diagnostics.Debug.WriteLine("Ad closed");
@@ -122,14 +122,16 @@ namespace example
 			{
 				System.Diagnostics.Debug.WriteLine("Ad displayed");
 			};
+
+			Presage.Instance.ShowInterstitial(showEvents);
+
 		}
 
 
 
 		void OnAdToServeButtonClick(object sender, EventArgs ea)
 		{
-			var interstitialEvents = Presage.Instance.AdToServe("interstitial");
-
+			ADHandlerEvents interstitialEvents = new ADHandlerEvents(Presage.Instance);
 			interstitialEvents.AdClosed += (s, e) =>
 			{
 				System.Diagnostics.Debug.WriteLine("Ad closed");
@@ -154,6 +156,7 @@ namespace example
 			{
 				System.Diagnostics.Debug.WriteLine("Ad displayed");
 			};
+			Presage.Instance.AdToServe("interstitial", interstitialEvents);
 		}
 
 
