@@ -47,26 +47,64 @@ public class CPresage extends CordovaPlugin {
         });
     }
 
+    public void loadInterstitial()
+    {
+	cordova.getActivity().runOnUiThread(new Runnable() {
+		public void run() {
+		    Presage.getInstance().loadInterstitial();
+		}
+	    });
+    }
+
+    public void showInterstitial()
+    {
+	cordova.getActivity().runOnUiThread(new Runnable() {
+		public void run() {
+		    Presage.getInstance().showInterstitial();
+		}
+	    });
+    }
+
+    public void launchWithEula()
+    {
+	cordova.getActivity().runOnUiThread(new Runnable() {
+		public void run() {
+		    Presage.getInstance().launchWithEula();
+		}
+	    });
+    }
+    
     private void adToServe(final CallbackContext callbackContext) {
         Presage.getInstance().adToServe("interstitial", new IADHandler() {
-            @Override
-            public void onAdNotFound() {
-              callbackContext.error("AdNotFound");
-            }
+		@Override
+		public void onAdNotFound() {
+		    callbackContext.error("AdNotFound");
+		}
 
-            @Override
-            public void onAdFound() {
-                PluginResult adFountResult = new PluginResult(PluginResult.Status.OK, "AdFound");
-                adFountResult.setKeepCallback(false);
-                callbackContext.sendPluginResult(adFountResult);
-            }
-
-            @Override
-            public void onAdClosed() {
-                PluginResult adClosedResult = new PluginResult(PluginResult.Status.OK, "AdClosed");
-                adClosedResult.setKeepCallback(true);
-                callbackContext.sendPluginResult(adClosedResult);
-            }
-        });
+		@Override
+		public void onAdFound() {
+		    PluginResult adFountResult = new PluginResult(PluginResult.Status.OK, "AdFound");
+		    adFountResult.setKeepCallback(false);
+		    callbackContext.sendPluginResult(adFountResult);
+		}
+		
+		@Override
+		public void onAdClosed() {
+		    PluginResult adClosedResult = new PluginResult(PluginResult.Status.OK, "AdClosed");
+		    adClosedResult.setKeepCallback(true);
+		    callbackContext.sendPluginResult(adClosedResult);
+		}
+		
+		@Override
+		public void onAdError(int code) {
+		    // TODO Auto-generated method stub
+		}
+		
+		@Override
+		public void onAdDisplayed() {
+		    // TODO Auto-generated method stub
+		}
+		
+	    });
     }
 }
