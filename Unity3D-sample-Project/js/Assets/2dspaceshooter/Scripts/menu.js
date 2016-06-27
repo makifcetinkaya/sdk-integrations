@@ -4,9 +4,10 @@
 private var blankGfx:Texture;
 
 function Start () {
-	#if UNITY_ANDROID
+#if UNITY_ANDROID
      // Creation of our WHAndlerImpl to Handle Events
     var handlerImpl = new WHandlerImpl();
+    var eulaImpl = new WEulaImpl();
 
     // Making AdToServe call to try to shox an Ad if available
     WPresage.AdToServe("interstitial", handlerImpl);
@@ -40,4 +41,26 @@ class WHandlerImpl extends MonoBehaviour implements WPresage.IADHandler {
     function OnAdClosed() {
         // Closed
     }
+
+    function OnAdError(code) {
+    	// Error
+    }
+
+    function OnAdDisplayed() {
+    	// Displayed
+    }
+}
+
+class WEulaImpl extends MonoBehaviour implements WPresage.IEulaHandler {
+	function OnEulaFound() {
+		// EULA found
+	}
+
+	function OnEulaNotFound() {
+		// EULA not found
+	}
+
+	function OnEulaClosed() {
+		// EULA Closed
+	}
 }
