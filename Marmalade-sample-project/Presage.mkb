@@ -1,0 +1,11 @@
+#!/usr/bin/env mkb
+files
+{
+    s3eHelloPresage.cpp
+}
+
+subprojects
+{
+	ExamplesMain
+	../Presage/PresageEDK
+}
