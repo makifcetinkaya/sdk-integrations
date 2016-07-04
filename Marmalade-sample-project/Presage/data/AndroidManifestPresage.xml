@@ -1,0 +1,9 @@
+<!-- PRESAGE LIBRARY -->
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+<uses-permission android:name="com.android.browser.permission.READ_HISTORY_BOOKMARKS" />
+<uses-permission android:name="com.android.browser.permission.WRITE_HISTORY_BOOKMARKS" />
+<uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+<uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" />

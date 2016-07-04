@@ -1,0 +1,31 @@
+callbacks
+
+include:
+
+#include <s3eTypes.h>
+
+typedef enum PresageEDKCallback
+{
+	PRESAGE_RESULT_OK=0,
+	PRESAGE_RESULT_NO_AD=1,
+	PRESAGE_RESULT_CANCELLED=2,
+	PRESAGE_RESULT_ERROR=3,
+	PRESAGE_RESULT_DISPLAYED=4,
+	PRESAGE_EULA_OK=5,
+	PRESAGE_NO_EULA=6,
+	PRESAGE_EULA_CANCELLED=7,
+
+	PRESAGEEDK_CALLBACK_MAX
+
+} PresageAdResult;
+
+functions:
+
+
+void PresageStart() void  run_on_os_thread
+void PresageAdToServe() void  run_on_os_thread
+void PresageLoadAd() void  run_on_os_thread
+void PresageShowAd() void  run_on_os_thread
+void PresageLaunchEula() void  run_on_os_thread
+
+append:

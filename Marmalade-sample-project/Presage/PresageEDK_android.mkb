@@ -1,0 +1,24 @@
+#!/usr/bin/env mkb
+# Builder mkb file for the PresageEDK extension on android
+platform LINUX
+
+buildtype (SCONS, ARM)
+
+define S3E_ANDROID
+
+options
+{
+    dll
+    output-name="lib/android/libPresageEDK.so"
+    output-name-debug="lib/android/libPresageEDK_d.so"
+}
+define S3E_BUILD_EXT
+
+subproject PresageEDK_build
+
+#Hub deployment options, please do not add anything below this line
+subproject
+{
+    (.)
+    PresageEDK_android_deployment
+}
