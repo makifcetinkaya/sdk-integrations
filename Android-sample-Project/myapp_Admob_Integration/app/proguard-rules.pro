@@ -30,6 +30,9 @@
     @android.webkit.JavascriptInterface <methods>;
 }
 
+-dontwarn org.apache.commons.collections.BeanMap
+-dontwarn java.beans.**
+
 -keepclassmembers class * implements java.io.Serializable {
     static final long serialVersionUID;
     private static final java.io.ObjectStreamField[] serialPersistentFields;
