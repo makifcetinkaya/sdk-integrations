@@ -38,6 +38,16 @@ public class MyActivity extends Activity {
             public void onAdClosed() {
                 Log.i("PRESAGE", "ad closed");
             }
+
+            @Override
+            public void onAdError(int code) {
+                Log.i("PRESAGE", String.format("error with code %d", code));
+            }
+
+            @Override
+            public void onAdDisplayed() {
+                Log.i("PRESAGE", "ad displayed");
+            }
         });
     }
 }
