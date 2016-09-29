@@ -7,7 +7,7 @@ This project has been developed in order to provide some examples of integration
 - Android
 	- HelloWorld App -> MyApp
 	- App with Admob after Ogury -> MyApp_Admob_Integration
-	- App with Ogury inside an Admob Mediation -> MyApp_Admob_mediation
+	- App with Ogury inside an Admob Mediation -> MyApp_Admob_Mediation
 - B4A 
 - Ionic
 	- Helloworld App
@@ -27,5 +27,5 @@ Next Improvement
 	- Update the MyApp_Admob_Mediation project
 
 - All projects
-	- Clarify the redmine.md of sub-project in order to make the importants informations more visible
+	- Clarify the redmine.md of sub-projects in order to make the importants informations more visible
 
