@@ -23,5 +23,9 @@ Next Improvement
 ======
 
 - Android
-	- App with Ogury inside a Mopub Mediation.
+	- App with Ogury inside a Mopub Mediation
+	- Update the MyApp_Admob_Mediation project
+
+- All projects
+	- Clarify the redmine.md of sub-project in order to make the importants informations more visible
 
