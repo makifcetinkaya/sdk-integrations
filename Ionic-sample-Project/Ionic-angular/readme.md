@@ -1,5 +1,12 @@
-# Ionic Tutorial
+# Ionic Angular
 
-In this tutorial, you learn how to build a native-like mobile application with Ionic and AngularJS. You build a Conference application that allows the attendees of the conference to browse through the list of sessions, and share information on Facebook.
+This project has been developed with an AngularJS approach.
+The important code for the integration is only in the conference folder.
 
-Follow the step-by-step instructions available here: http://ccoenraets.github.io/ionic-tutorial/
+- Conference
+	- www
+		- index.html where all the JS has been added (CPresage.js and the content of the js folder)
+		- js 
+			- app.js with all the routes
+			- controller.js is the app controller, ogury.adToServe() has been added to call ads when the login is submitted or the login page is closed
+			- services.js with the service Ogury where ads behaviour are handled
