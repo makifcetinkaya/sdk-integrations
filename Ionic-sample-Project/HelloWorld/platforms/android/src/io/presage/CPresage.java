@@ -47,24 +47,6 @@ public class CPresage extends CordovaPlugin {
         });
     }
 
-    public void loadInterstitial()
-    {
-	cordova.getActivity().runOnUiThread(new Runnable() {
-		public void run() {
-		    Presage.getInstance().loadInterstitial();
-		}
-	    });
-    }
-
-    public void showInterstitial()
-    {
-	cordova.getActivity().runOnUiThread(new Runnable() {
-		public void run() {
-		    Presage.getInstance().showInterstitial();
-		}
-	    });
-    }
-
     public void launchWithEula()
     {
 	cordova.getActivity().runOnUiThread(new Runnable() {
@@ -98,11 +80,18 @@ public class CPresage extends CordovaPlugin {
 		@Override
 		public void onAdError(int code) {
 		    // TODO Auto-generated method stub
+		    PluginResult adErrorResult = new PluginResult(PluginResult.Status.OK, "AdError");
+		    adErrorResult.setKeepCallback(true);
+		    callbackContext.sendPluginResult(adErrorResult);
+
 		}
 		
 		@Override
 		public void onAdDisplayed() {
 		    // TODO Auto-generated method stub
+		    PluginResult adDisplayedResult = new PluginResult(PluginResult.Status.OK, "AdDisplayed");
+		    adDisplayedResult.setKeepCallback(true);
+		    callbackContext.sendPluginResult(adDisplayedResult);
 		}
 		
 	    });

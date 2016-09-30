@@ -14,6 +14,12 @@ angular.module('starter.services', ['ngResource'])
                             console.log('AD CLOSED');
                             // If you want to do specific stuff when an ad is clicked or dismissed, even just a log
                         }
+                        else if (event == 'AdError') {
+                            console.log('AD ERROR');
+                        }
+                        else if (event == 'AdDisplayed') {
+                            console.log('AD DISPLAYED');
+                        }
                     },
                     onAdNotFound: function (error) {
                         console.log('AD NOT FOUND');
