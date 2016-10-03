@@ -40,13 +40,14 @@ package com.example.myapp;
             @Override
             public void onAdFound() {
                 mCustomlistener.onAdLoaded();
-                mCustomlistener.onAdOpened();
+                Log.i("PRESAGE", "ad found");
                 MainActivity.resetAdTime();
             }
 
             @Override
             public void onAdNotFound() {
                 mCustomlistener.onAdFailedToLoad(AdRequest.ERROR_CODE_NO_FILL);
+                Log.i("PRESAGE", "ad not found");
             }
 
             @Override
@@ -54,6 +55,18 @@ package com.example.myapp;
                 // Necessary to do this way to avoid errors because not on the UIThread
                 handler.sendEmptyMessage(0);
             }
+            @Override
+            public void onAdError(int code) {
+                mCustomlistener.onAdFailedToLoad(AdRequest.ERROR_CODE_NO_FILL);
+                Log.i("PRESAGE", String.format("error with code %d", code));
+            }
+
+            @Override
+            public void onAdDisplayed() {
+                Log.i("PRESAGE", "ad displayed");
+                mCustomlistener.onAdOpened();
+            }
+
         };
 
         @Override
