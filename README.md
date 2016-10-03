@@ -25,8 +25,7 @@ Next Improvement
 - Android
 	- App with Ogury inside a Mopub Mediation
 
-- All projects
-	- Clarify the redmine.md of sub-projects in order to make the importants informations more visible
+- Clarify the readme.md of Marmalade, Adobe Air, B4a and Xamarin.
 
 Last Improvement
 ======
