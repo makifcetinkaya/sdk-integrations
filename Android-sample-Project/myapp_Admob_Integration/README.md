@@ -13,8 +13,8 @@ The important code for the integration is in the following folder :
 This app is configured with Admob ads when Ogury ads are not available.
 
 ### How to use it
-	- Clone the project
-	- Add your api_key on the manifest
-	- Launch the app 
-	- Enjoy !
+- Clone the project
+- Add your api_key on the manifest
+- Launch the app 
+- Enjoy !
 

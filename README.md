@@ -24,7 +24,6 @@ Next Improvement
 
 - Android
 	- App with Ogury inside a Mopub Mediation
-	- Update the MyApp_Admob_Mediation project
 
 - All projects
 	- Clarify the redmine.md of sub-projects in order to make the importants informations more visible
@@ -32,6 +31,7 @@ Next Improvement
 Last Improvement
 ======
 
-- Ionic complete update
-- Phonegap complete update
+- Ionic complete update with SDK 1.8.1
+- Phonegap complete update with SDK 1.8.1
+- MyApp_Admob_Mediation project update with SDK 1.8.1
 

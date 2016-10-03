@@ -12,11 +12,11 @@ The important code for the integration is only in the conference folder.
 			- services.js with the service Ogury where ads behaviour are handled
 
 ### How to use it
-	- Clone the project
-	- ionic platform add android
-	- Go on the conference/platforms/android/AndroidManifest.xml and replace the "ADD_API_KEY_HERE" by your own presage api_key
-	- ionic build android
-	- ionic run android
-	- Don't forget to request an impression adding your device here : http://admin.ogury.co/integration_test/devices
-	- When the app is running on your device, tap on the icon menu > Login. You will have the first ad call, the second ad call is when you click on the close button on the top right corner of the login page.
-	- Enjoy :)
+- Clone the project
+- ionic platform add android
+- Go on the conference/platforms/android/AndroidManifest.xml and replace the "ADD_API_KEY_HERE" by your own presage api_key
+- ionic build android
+- ionic run android
+- Don't forget to request an impression adding your device here : http://admin.ogury.co/integration_test/devices
+- When the app is running on your device, tap on the icon menu > Login. You will have the first ad call, the second ad call is when you click on the close button on the top right corner of the login page.
+- Enjoy :)
