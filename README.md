@@ -1,7 +1,7 @@
 Sample Project for SDK Integration
 ======
 
-This project has been developed in order to provide some examples of integrations for the technologies we support.
+This repository has been developed in order to provide some examples of integrations for the technologies we support.
 
 - Adobe Air
 - Android
@@ -28,4 +28,10 @@ Next Improvement
 
 - All projects
 	- Clarify the redmine.md of sub-projects in order to make the importants informations more visible
+
+Last Improvement
+======
+
+- Ionic complete update
+- Phonegap complete update
 
