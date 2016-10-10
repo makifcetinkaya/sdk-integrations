@@ -39,7 +39,6 @@ public class AuthForm : MonoBehaviour {
 		
 		public void OnAdFound() {
 			Debug.Log ("onAdFound");
-			WPresage.ShowInterstitial(this);
 		}
 		
 		public void OnAdClosed() {
