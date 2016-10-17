@@ -49,3 +49,6 @@
     java.lang.Object writeReplace();
     java.lang.Object readResolve();
 }
+
+-dontwarn org.apache.commons.collections.BeanMap
+-dontwarn java.beans.**
