@@ -1,7 +1,5 @@
 package com.example.myapp;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -19,31 +17,21 @@ import com.mopub.mobileads.MoPubInterstitial;
 import com.mopub.mobileads.DefaultInterstitialAdListener;
 
 import io.presage.Presage;
-import java.util.Date;
 
 public class MainActivity extends AppCompatActivity  {
 
     private MoPubInterstitial mCustomEventInterstitial;
-    public static Context contextOfApplication;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        contextOfApplication = getApplicationContext();
-
-        SharedPreferences pref = contextOfApplication.getSharedPreferences("lastAd", 0); // 0 - for private mode
-        final long AdDisplayed= pref.getLong("lastAd", 0L);
-        Date today = new Date();
-        final long AdToDisplay = today.getTime();
-
-        Log.i("PresageCount", "The count is " + (AdToDisplay - AdDisplayed));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             WebView.setWebContentsDebuggingEnabled(true);
         }
 
-        mCustomEventInterstitial = new MoPubInterstitial(this, "Your Mopub Key");
+        mCustomEventInterstitial = new MoPubInterstitial(this, "Your_Mopub_Key");
 
         mCustomEventInterstitial.setInterstitialAdListener(new DefaultInterstitialAdListener());
 
@@ -108,16 +96,5 @@ public class MainActivity extends AppCompatActivity  {
     @Override
     public void onResume(){
         super.onResume();
-    }
-    public static Context getContextOfApplication(){
-        return contextOfApplication;
-    }
-    public static void resetAdTime(){
-        Context applicationContext = MainActivity.getContextOfApplication();
-        SharedPreferences pref = applicationContext.getSharedPreferences("lastAd", 0);
-        SharedPreferences.Editor editor = pref.edit();
-        Date currentDate=new Date();
-        editor.putLong("lastAd", currentDate.getTime());
-        editor.commit();
     }
 }
