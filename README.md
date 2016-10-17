@@ -22,9 +22,6 @@ This repository has been developed in order to provide some examples of integrat
 Next Improvement
 ======
 
-- Android
-	- App with Ogury inside a Mopub Mediation
-
 - Clarify the readme.md of Marmalade, Adobe Air, B4a and Xamarin.
 
 Last Improvement
@@ -33,4 +30,7 @@ Last Improvement
 - Ionic complete update with SDK 1.8.1
 - Phonegap complete update with SDK 1.8.1
 - MyApp_Admob_Mediation project update with SDK 1.8.1
+	- Fix Proguard config for 1.8.1
+- MyApp_Mopub_Mediation
+	- App with Ogury inside a Mopub Mediation v1 - Basic integration
 
