@@ -1,3 +1,8 @@
+THIS REPOSITORY IS DEPRECATED, DO NOT USE IT IN ANY CASE
+PLEASE CONTACT techsupport@ogury.co IF YOU NEED ASSISTANCE.
+
+
+
 Sample Project for SDK Integration
 ======
 
