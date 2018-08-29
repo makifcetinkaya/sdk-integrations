@@ -1,5 +1,6 @@
+New Repository : https://github.com/Ogury/Sample-Projects
 THIS REPOSITORY IS DEPRECATED, DO NOT USE IT IN ANY CASE
-PLEASE CONTACT techsupport@ogury.co IF YOU NEED ASSISTANCE.
+PLEASE CONTACT techsupport@ogury.co IF YOU NEED ASSISTANCE. 
 
 
 
